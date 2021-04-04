@@ -23,16 +23,17 @@ public class OrderController {
     private ProductRepository productRepository;
 
     @PostMapping("/placeOrder")
-    public String placeOrder(@RequestBody Customer request) throws JsonProcessingException {
+    public Customer placeOrder(@RequestBody Customer request) throws JsonProcessingException {
         
         System.out.println(request.getId());
         System.out.println(request.getEmail());
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String json = ow.writeValueAsString(request);
         System.out.println(json);
-        customerRepository.save(request);
+        
 
-        return "customerRepository.save(request)";
+        return customerRepository.save(request);
+        // return "customerRepository.save(request)";
     }
 
     @GetMapping("/findAllOrders")
