@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface CustomerRepository extends JpaRepository<Customer, Integer>{
     
-    @Query("SELECT new com.example.demo.dto.OrderResponse(c.name, p.productName) FROM Customer c JOIN c.products p")
+    @Query("SELECT new com.example.demo.dto.OrderResponse(c.name, p.productName, c.id) FROM Customer c JOIN c.products p")
     public List<OrderResponse> getJoinInformation();
 
     @Query("SELECT u FROM Customer u WHERE u.id = 1")

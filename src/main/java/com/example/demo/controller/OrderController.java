@@ -53,7 +53,12 @@ public class OrderController {
     }
 
     @GetMapping("/getInfo")
-    public List<OrderResponse> getJoinInformation() {
+    public List<OrderResponse> getJoinInformation() throws JsonProcessingException {
+        for (OrderResponse response : customerRepository.getJoinInformation() ) {
+            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+            String json = ow.writeValueAsString(response);
+            System.out.println(json);
+        }
         return customerRepository.getJoinInformation();
     }
 }

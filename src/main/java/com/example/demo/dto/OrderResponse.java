@@ -10,9 +10,10 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class OrderResponse {
+    private int id;
     private String name;
     private String productName;
-    
+
     public String getName() {
         return name;
     }
@@ -25,8 +26,16 @@ public class OrderResponse {
     public void setProductName(String productName) {
         this.productName = productName;
     }
-    
-    public OrderResponse(String name, String productName) {
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public OrderResponse( String name, String productName ,int id) {
+        this.id = id;
         this.name = name;
         this.productName = productName;
     }
