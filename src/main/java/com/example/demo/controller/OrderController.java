@@ -2,7 +2,10 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import com.example.demo.dto.OrderRequest;
+import com.example.demo.dto.OrderResponse;
 import com.example.demo.entity.Customer;
+import com.example.demo.entity.Product;
 import com.example.demo.repository.CustomerRepository;
 import com.example.demo.repository.ProductRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -23,21 +26,34 @@ public class OrderController {
     private ProductRepository productRepository;
 
     @PostMapping("/placeOrder")
-    public Customer placeOrder(@RequestBody Customer request) throws JsonProcessingException {
+    public Customer placeOrder(@RequestBody OrderRequest request) throws JsonProcessingException {
         
-        System.out.println(request.getId());
-        System.out.println(request.getEmail());
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String json = ow.writeValueAsString(request);
         System.out.println(json);
+
+        System.out.println(json);
+        System.out.println(request);
         
 
-        return customerRepository.save(request);
+        return customerRepository.save(request.getCustomer());
         // return "customerRepository.save(request)";
+
+        // return json;
     }
 
     @GetMapping("/findAllOrders")
     public List<Customer> findAllOrders() {
         return customerRepository.findAll();
+    }
+
+    @GetMapping("/findAllProduct")
+    public List<Product> findAlProducts() {
+        return productRepository.findAll();
+    }
+
+    @GetMapping("/getInfo")
+    public List<OrderResponse> getJoinInformation() {
+        return customerRepository.getJoinInformation();
     }
 }

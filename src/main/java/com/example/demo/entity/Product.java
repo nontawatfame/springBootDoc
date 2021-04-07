@@ -1,8 +1,12 @@
 package com.example.demo.entity;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,7 +25,8 @@ public class Product {
     private String productName;
     private int qty;
     private int price;
-    
+    private int cp_fk;
+
     public int getPid() {
         return pid;
     }
@@ -46,4 +51,12 @@ public class Product {
     public void setPrice(int price) {
         this.price = price;
     }
+    public int getCp_fk() {
+        return cp_fk;
+    }
+    public void setCp_fk(int cp_fk) {
+        this.cp_fk = cp_fk;
+    }
+
+   
 }
